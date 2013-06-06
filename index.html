@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>WES BOS</title>
+  <link rel="stylesheet" type="text/css" href="components/normalize-css/normalize.css">
+  <link rel="stylesheet" type="text/css" href="wesbos.css">
+</head>
+<body>
+  <div id="content">
+    <div id="first"><div class="prefix"></div><div class="word"></div></div>
+    <div id="last"><div class="prefix"></div><div class="word"></div></div>
+    <div id="footer">A thing for <a href="http://wesbos.com/">Wes Bos</a> by <a href="http://benalman.com/">"Cowboy" Ben Alman</a></div>
+  </div>
+  <script type="script/no-u" id="letter-tmpl">
+    <div class="letter">
+        <div class="flipper">
+            <div class="front <%= before || 'empty' %>"><%= before %></div>
+            <div class="back <%= after || 'empty' %>"><%= after %></div>
+        </div>
+    </div>
+  </script>
+  <script src="components/jquery/jquery.min.js"></script>
+  <script src="components/lodash/dist/lodash.min.js"></script>
+  <script src="wesbos.js"></script>
+</body>
+</html>
+
