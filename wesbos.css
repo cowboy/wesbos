@@ -104,6 +104,67 @@ body {
           transform: rotateX(180deg);
 }
 
+/* Wow this crap is verbose */
+.flipped .flipper .front:not(.empty) {
+  -webkit-animation: flip-front 1s;
+     -moz-animation: flip-front 1s;
+       -o-animation: flip-front 1s;
+          animation: flip-front 1s;
+}
+
+.flipped .flipper .back:not(.empty) {
+  -webkit-animation: flip-back 1s;
+     -moz-animation: flip-back 1s;
+       -o-animation: flip-back 1s;
+          animation: flip-back 1s;
+}
+
+.prefix .flipped .flipper .back:not(.empty) {
+  -webkit-animation: flip-back-prefix 1s;
+     -moz-animation: flip-back-prefix 1s;
+       -o-animation: flip-back-prefix 1s;
+          animation: flip-back-prefix 1s;
+}
+
+@-webkit-keyframes flip-front {
+  0%  { background-color: rgba(255, 255, 255, 0.1); }
+  50% { background-color: rgba(255, 255, 255, 0.5); }
+}
+@-webkit-keyframes flip-back {
+  50%  { background-color: rgba(255, 255, 255, 0.5); }
+  100% { background-color: rgba(255, 255, 255, 0.1); }
+}
+@-webkit-keyframes flip-back-prefix {
+  50%  { background-color: rgba(255, 255, 255, 0.5); }
+  100% { background-color: rgba(0, 0, 0, 0.2); }
+}
+
+@-moz-keyframes flip-front {
+  0%  { background-color: rgba(255, 255, 255, 0.1); }
+  50% { background-color: rgba(255, 255, 255, 0.5); }
+}
+@-moz-keyframes flip-back {
+  50%  { background-color: rgba(255, 255, 255, 0.5); }
+  100% { background-color: rgba(255, 255, 255, 0.1); }
+}
+@-moz-keyframes flip-back-prefix {
+  50%  { background-color: rgba(255, 255, 255, 0.5); }
+  100% { background-color: rgba(0, 0, 0, 0.2); }
+}
+
+@keyframes flip-front {
+  0%  { background-color: rgba(255, 255, 255, 0.1); }
+  50% { background-color: rgba(255, 255, 255, 0.5); }
+}
+@keyframes flip-back {
+  50%  { background-color: rgba(255, 255, 255, 0.5); }
+  100% { background-color: rgba(255, 255, 255, 0.1); }
+}
+@keyframes flip-back-prefix {
+  50%  { background-color: rgba(255, 255, 255, 0.5); }
+  100% { background-color: rgba(0, 0, 0, 0.2); }
+}
+
 #footer {
   font-size: 0.8em;
   margin-top: 2em;
