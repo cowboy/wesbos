@@ -4,6 +4,9 @@ var alls = "ley ton mith ford more worth".split(" ");
 var firsts = "mere ty wes twood".split(" ").concat(alls);
 var lasts = "well which where titch bos wood".split(" ").concat(alls);
 
+var prefixlen = 3;
+var longest = prefixlen + _(firsts.concat(lasts)).pluck("length").max();
+
 Array.prototype.randomItem = function() {
   return this[Math.floor(Math.random() * this.length)];
 };
@@ -43,7 +46,7 @@ var first, last;
 (function loopy() {
   var offset = 0;
   if (!initted) {
-    offset = 3;
+    offset = prefixlen;
     $("#first .prefix").empty().addWord("wes");
     $("#last .prefix").empty().addWord("bos");
     initted = true;
@@ -60,6 +63,7 @@ var first, last;
 // Sadly, a bazillion times easier than media queries.
 var body = $("body");
 $(window).on("resize", (function resize() {
-  body.css("font-size", (body.width() / 50) + "px");
+  var px = body.width() / (longest + 1) / 5;
+  body.css("font-size", px + "px");
   return resize;
 }()));
