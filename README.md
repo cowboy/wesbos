@@ -2,7 +2,7 @@
 
 So I was hanging out with my friend [Wes Bos](http://wesbos.com/) at [JSConf](http://2013.jsconf.us/) recently. And for some reason, every time I said his name, I added an extra random syllable to both his first and last names. Because it was really the funnest thing. Ever.
 
-For example, "Weston Bosley." Or "Westwood Boswitch."
+For example, "Weston Bosley." Or "Westwood Boswitch." Or "Wesbee Bosshog."
 
 Well, naturally, I had to create a website to celebrate this.
 
