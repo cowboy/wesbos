@@ -7,10 +7,12 @@ var lasts = "well which where titch bos wood".split(" ").concat(alls);
 var prefixlen = 3;
 var longest = prefixlen + _(firsts.concat(lasts)).pluck("length").max();
 
+// Get a random array item.
 Array.prototype.randomItem = function() {
   return this[Math.floor(Math.random() * this.length)];
 };
 
+// Get a random array item, as long as it's not one of the specified values.
 Array.prototype.randomItemButNot = function(nots) {
   var result;
   do {
@@ -41,6 +43,7 @@ $.fn.addWord = function(word, offset) {
   });
 };
 
+// Write some stuff to the page!
 var initted;
 var first, last;
 (function loopy() {
