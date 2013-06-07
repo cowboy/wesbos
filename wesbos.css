@@ -8,7 +8,7 @@ html, body {
 body {
   font-family: 'Droid Sans Mono', monospace;
   text-transform: uppercase;
-  background: #47AFF5;
+  background: #777;
   display: -webkit-flexbox;
   display: -ms-flexbox;
   display: -webkit-flex;
