@@ -1,11 +1,10 @@
-var letterTmpl = _.template($.trim($("#letter-tmpl").text()));
+// WES___ BOS___ name suffixes.
+var alls = "ford fun ley long mith more ney ton worth".split(" ");
+var firsts = "bee bock mere twood ty wes".split(" ").concat(alls);
+var lasts = "bos king on shog titch trich well where which wood".split(" ").concat(alls);
 
-var alls = "ley ton mith ford more worth".split(" ");
-var firsts = "mere ty wes twood".split(" ").concat(alls);
-var lasts = "well which where titch bos wood".split(" ").concat(alls);
-
+// Fortunately, both WES and BOS are 3 chars. Otherwise, I'd need TWO vars!!
 var prefixlen = 3;
-var longest = prefixlen + _(firsts.concat(lasts)).pluck("length").max();
 
 // Get a random array item.
 Array.prototype.randomItem = function() {
@@ -21,16 +20,20 @@ Array.prototype.randomItemButNot = function(nots) {
   return result;
 };
 
-$.fn.addLetter = function(before, after, index) {
+// Render a letter, animating from before -> after offset * 100ms.
+var letterTmpl = _.template($.trim($("#letter-tmpl").text()));
+$.fn.addLetter = function(before, after, offset) {
   var letter = $(letterTmpl({before: before, after: after}));
   return this.each(function() {
     letter.appendTo(this);
     setTimeout(function() {
       letter.addClass("flipped");
-    }, index * 100);
+    }, offset * 100);
   });
 };
 
+// Render the given word, animating one letter every 100ms, starting at
+// offset * 100ms.
 $.fn.addWord = function(word, offset) {
   var newLetters = word.split("");
   return this.each(function() {
@@ -43,15 +46,16 @@ $.fn.addWord = function(word, offset) {
   });
 };
 
-// Write some stuff to the page!
+// Write some stuff to the page, loop, good times.
 var initted;
 var recents = [];
 (function loopy() {
   var offset = 0;
+  // Only draw WES BOS the first time.
   if (!initted) {
     offset = prefixlen;
-    $("#first .prefix").empty().addWord("wes");
-    $("#last .prefix").empty().addWord("bos");
+    $("#first .prefix").addWord("wes");
+    $("#last .prefix").addWord("bos");
     initted = true;
   }
 
@@ -70,6 +74,7 @@ var recents = [];
 
 // Sadly, a bazillion times easier than media queries.
 var body = $("body");
+var longest = prefixlen + _(firsts.concat(lasts)).pluck("length").max();
 $(window).on("resize", (function resize() {
   var px = body.width() / (longest + 1) / 5;
   body.css("font-size", px + "px");
