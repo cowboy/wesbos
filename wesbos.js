@@ -1,3 +1,12 @@
+/*
+ * WES BOS
+ * http://cowboy.github.io/wesbos/
+ *
+ * Copyright (c) 2013 "Cowboy" Ben Alman
+ * Licensed under the MIT license.
+ * https://github.com/cowboy/wesbos/blob/master/LICENSE-MIT
+ */
+
 // WES___ BOS___ name suffixes.
 var alls = "ford fun ley long mith more ney ton worth".split(" ");
 var firsts = "bee bock mere twood ty wes".split(" ").concat(alls);
