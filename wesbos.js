@@ -45,7 +45,7 @@ $.fn.addWord = function(word, offset) {
 
 // Write some stuff to the page!
 var initted;
-var first, last;
+var recents = [];
 (function loopy() {
   var offset = 0;
   if (!initted) {
@@ -54,8 +54,13 @@ var first, last;
     $("#last .prefix").empty().addWord("bos");
     initted = true;
   }
-  first = firsts.randomItemButNot([first]);
-  last = lasts.randomItemButNot([first, last]);
+
+  // Pick random suffixes that haven't been used too recently.
+  var first = firsts.randomItemButNot(recents);
+  recents.unshift(first);
+  var last = lasts.randomItemButNot(recents);
+  recents.unshift(last);
+  recents = recents.slice(0, 6);
 
   $("#first .word").empty().addWord(first, offset);
   $("#last .word").empty().addWord(last, offset);
