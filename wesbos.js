@@ -4,7 +4,7 @@
  *
  * Copyright (c) 2013 "Cowboy" Ben Alman
  * Licensed under the MIT license.
- * https://github.com/cowboy/wesbos/blob/master/LICENSE-MIT
+ * https://github.com/cowboy/wesbos/blob/gh-pages/LICENSE-MIT
  */
 
 // WES___ BOS___ name suffixes.
