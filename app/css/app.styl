@@ -45,58 +45,53 @@ body.init #content {
   margin: 0 0.05em 0 0;
   text-align: center;
   perspective: 800px;
+
+  .flipper, .flipper > * {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+  .flipper {
+    transition: transform 1s;
+    transform-style: preserve-3d;
+
+    > * {
+      backface-visibility: hidden;
+      border: 0.05em solid #000;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-color: rgba(0, 0, 0, 0.15);
+      font-weight: 400;
+
+      .prefix & {
+        background-color: rgba(0, 0, 0, 0.2);
+        border-color: rgba(0, 0, 0, 0.15);
+        font-weight: 700;
+      }
+    }
+
+    .back {
+      transform: rotateX(180deg);
+    }
+    .empty {
+      background: none !important;
+      border: none !important;
+    }
+  }
 }
 
-.flipper, .flipper > * {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-}
-
-.flipper {
-  transition: transform 1s;
-  transform-style: preserve-3d;
-}
-
-.flipper > * {
-  backface-visibility: hidden;
-  border: 0.05em solid #000;
-  background-color: rgba(255, 255, 255, 0.1);
-  border-color: rgba(0, 0, 0, 0.15);
-  font-weight: 400;
-}
-
-.prefix .flipper > * {
-  background-color: rgba(0, 0, 0, 0.2);
-  border-color: rgba(0, 0, 0, 0.15);
-  font-weight: 700;
-}
-
-.letter .back {
-  transform: rotateX(180deg);
-}
-
-.letter .empty {
-  background: none !important;
-  border: none !important;
-}
-
-/* add this class to start the animation */
+/* Add .flipped class to start the animation */
 .flipped .flipper {
   transform: rotateX(180deg);
-}
 
-/* Wow this crap is verbose */
-.flipped .flipper .front:not(.empty) {
-  animation: flip-front 1s;
-}
-
-.flipped .flipper .back:not(.empty) {
-  animation: flip-back 1s;
-}
-
-.prefix .flipped .flipper .back:not(.empty) {
-  animation: flip-back-prefix 1s;
+  .front:not(.empty) {
+    animation: flip-front 1s;
+  }
+  .back:not(.empty) {
+    animation: flip-back 1s;
+  }
+  .prefix & .back:not(.empty) {
+    animation: flip-back-prefix 1s;
+  }
 }
 
 @keyframes flip-front {
@@ -115,13 +110,13 @@ body.init #content {
 #footer {
   font-size: 0.8em;
   margin-top: 2em;
+
   a {
     color: #000;
     text-decoration: none;
+
     &:hover {
       text-decoration: underline;
     }
   }
 }
-
-
