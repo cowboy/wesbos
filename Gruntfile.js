@@ -8,8 +8,17 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-stylus');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-handlebars');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
 
   grunt.initConfig({
+    jshint: {
+      options: {
+        jshintrc: '.jshintrc'
+      },
+      app: {
+        src: ['app/**/*.js']
+      }
+    },
     jade: {
       dev: {
         files: [{expand: true, cwd: 'app/pages', src: '*.jade', dest: 'dist', ext: '.html'}],
@@ -104,8 +113,8 @@ module.exports = function(grunt) {
   });
 
 
-  grunt.registerTask('dev', ['jade:dev', 'handlebars', 'stylus:dev', 'connect:dev', 'watch']);
-  grunt.registerTask('prod', ['jade:prod', 'handlebars', 'requirejs:prod', 'stylus:prod', 'connect:prod:keepalive']);
+  grunt.registerTask('dev', ['jshint', 'jade:dev', 'handlebars', 'stylus:dev', 'connect:dev', 'watch']);
+  grunt.registerTask('prod', ['jshint', 'jade:prod', 'handlebars', 'requirejs:prod', 'stylus:prod', 'connect:prod:keepalive']);
 
   grunt.registerTask('default', ['dev']);
 
