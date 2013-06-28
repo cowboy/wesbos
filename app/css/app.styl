@@ -11,14 +11,8 @@ body {
   font-family: 'Droid Sans Mono', monospace;
   text-transform: uppercase;
   background: #777;
-  display: -webkit-flexbox;
-  display: -ms-flexbox;
-  display: -webkit-flex;
   display: flex;
-  -webkit-flex-align: center;
-      -ms-flex-align: center;
-  -webkit-align-items: center;
-          align-items: center;
+  align-items: center;
 }
 
 #content {
@@ -28,14 +22,12 @@ body {
   padding-right: 0;
 }
 
-body.resized #content {
+body.init #content {
   display: block;
 }
 
 * {
-  -webkit-box-sizing: border-box;
-     -mox-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing border-box;
 }
 
 .prefix, .suffix {
@@ -52,10 +44,7 @@ body.resized #content {
   position: relative;
   margin: 0 0.05em 0 0;
   text-align: center;
-  -webkit-perspective: 800px;
-     -moz-perspective: 800px;
-       -o-perspective: 800px;
-          perspective: 800px;
+  perspective: 800px;
 }
 
 .flipper, .flipper > * {
@@ -65,21 +54,12 @@ body.resized #content {
 }
 
 .flipper {
-  -webkit-transition: -webkit-transform 1s;
-     -moz-transition: -moz-transform 1s;
-       -o-transition: -o-transform 1s;
-          transition: transform 1s;
-  -webkit-transform-style: preserve-3d;
-     -moz-transform-style: preserve-3d;
-       -o-transform-style: preserve-3d;
-          transform-style: preserve-3d;
+  transition: transform 1s;
+  transform-style: preserve-3d;
 }
 
 .flipper > * {
-  -webkit-backface-visibility: hidden;
-     -moz-backface-visibility: hidden;
-       -o-backface-visibility: hidden;
-          backface-visibility: hidden;
+  backface-visibility: hidden;
   border: 0.05em solid #000;
   background-color: rgba(255, 255, 255, 0.1);
   border-color: rgba(0, 0, 0, 0.15);
@@ -93,10 +73,7 @@ body.resized #content {
 }
 
 .letter .back {
-  -webkit-transform: rotateX(180deg);
-     -moz-transform: rotateX(180deg);
-       -o-transform: rotateX(180deg);
-          transform: rotateX(180deg);
+  transform: rotateX(180deg);
 }
 
 .letter .empty {
@@ -106,58 +83,20 @@ body.resized #content {
 
 /* add this class to start the animation */
 .flipped .flipper {
-  -webkit-transform: rotateX(180deg);
-     -moz-transform: rotateX(180deg);
-       -o-transform: rotateX(180deg);
-          transform: rotateX(180deg);
+  transform: rotateX(180deg);
 }
 
 /* Wow this crap is verbose */
 .flipped .flipper .front:not(.empty) {
-  -webkit-animation: flip-front 1s;
-     -moz-animation: flip-front 1s;
-       -o-animation: flip-front 1s;
-          animation: flip-front 1s;
+  animation: flip-front 1s;
 }
 
 .flipped .flipper .back:not(.empty) {
-  -webkit-animation: flip-back 1s;
-     -moz-animation: flip-back 1s;
-       -o-animation: flip-back 1s;
-          animation: flip-back 1s;
+  animation: flip-back 1s;
 }
 
 .prefix .flipped .flipper .back:not(.empty) {
-  -webkit-animation: flip-back-prefix 1s;
-     -moz-animation: flip-back-prefix 1s;
-       -o-animation: flip-back-prefix 1s;
-          animation: flip-back-prefix 1s;
-}
-
-@-webkit-keyframes flip-front {
-  0%  { background-color: rgba(255, 255, 255, 0.1); }
-  50% { background-color: rgba(255, 255, 255, 0.5); }
-}
-@-webkit-keyframes flip-back {
-  50%  { background-color: rgba(255, 255, 255, 0.5); }
-  100% { background-color: rgba(255, 255, 255, 0.1); }
-}
-@-webkit-keyframes flip-back-prefix {
-  50%  { background-color: rgba(255, 255, 255, 0.5); }
-  100% { background-color: rgba(0, 0, 0, 0.2); }
-}
-
-@-moz-keyframes flip-front {
-  0%  { background-color: rgba(255, 255, 255, 0.1); }
-  50% { background-color: rgba(255, 255, 255, 0.5); }
-}
-@-moz-keyframes flip-back {
-  50%  { background-color: rgba(255, 255, 255, 0.5); }
-  100% { background-color: rgba(255, 255, 255, 0.1); }
-}
-@-moz-keyframes flip-back-prefix {
-  50%  { background-color: rgba(255, 255, 255, 0.5); }
-  100% { background-color: rgba(0, 0, 0, 0.2); }
+  animation: flip-back-prefix 1s;
 }
 
 @keyframes flip-front {
@@ -176,13 +115,13 @@ body.resized #content {
 #footer {
   font-size: 0.8em;
   margin-top: 2em;
+  a {
+    color: #000;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }
 
-#footer a {
-  color: #000;
-  text-decoration: none;
-}
 
-#footer a:hover {
-  text-decoration: underline;
-}
