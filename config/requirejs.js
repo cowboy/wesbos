@@ -20,9 +20,6 @@ require.config({
 
   // load non-amd dependencies
   shim: {
-    jquery: {
-      exports: '$'
-    },
     handlebars: {
       exports: 'Handlebars'
     }
