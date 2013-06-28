@@ -20,4 +20,8 @@ When done:
 
 1. Run `grunt prod` to publish everything to `dist` and start a webserver on [localhost:8000](http://localhost:8000/).
 
+When REALLY done:
+
+1. Run `grunt deploy` to publish everything to the `gh-pages` branch, which will be viewable at <http://cowboy.github.io/wesbos/>.
+
 If you have suggestions for more [first and last name suffixes](https://github.com/cowboy/wesbos/blob/master/config/config.json), file a PR and I'll add them in. Just make sure they actually sound cool. Thanks!

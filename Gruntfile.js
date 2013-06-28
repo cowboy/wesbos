@@ -101,6 +101,15 @@ module.exports = function(grunt) {
         tasks: ['stylus'],
       },
     },
+    'gh-pages': {
+      site: {
+        options: {
+          base: 'dist',
+          clone: 'temp/gh-pages',
+        },
+        src: ['**/*']
+      }
+    },
   });
 
   grunt.loadNpmTasks('grunt-contrib-requirejs');
@@ -111,9 +120,21 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-handlebars');
   grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-gh-pages');
 
-  grunt.registerTask('dev', ['jshint', 'jade:dev', 'handlebars', 'stylus:dev', 'connect:dev', 'watch']);
-  grunt.registerTask('prod', ['jshint', 'jade:prod', 'handlebars', 'requirejs:prod', 'stylus:prod', 'connect:prod:keepalive']);
+  grunt.registerTask('build',
+    'Build site files for testing or deployment.',
+    ['jshint', 'jade:prod', 'handlebars', 'requirejs:prod', 'stylus:prod']);
+  grunt.registerTask('deploy',
+    'Deploy site via gh-pages.',
+    ['build', 'gh-pages']);
+
+  grunt.registerTask('dev',
+    'Start a live-reloading dev webserver on localhost.',
+    ['jshint', 'jade:dev', 'handlebars', 'stylus:dev', 'connect:dev', 'watch']);
+  grunt.registerTask('prod',
+    'Publish to dist/ and start a webserver on localhost.',
+    ['build', 'connect:prod:keepalive']);
 
   grunt.registerTask('default', ['dev']);
 
