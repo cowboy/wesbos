@@ -14,15 +14,14 @@ define(function(require) {
   var lasts = config.suffix.last.concat(config.suffix.all);
 
   // Sadly, a bazillion times easier than media queries.
-  var body = $('body');
+  var body = $('body').addClass('init');
   var prefixmax = Math.max(config.prefix.first.length, config.prefix.last.length);
   var longest = prefixmax + _(firsts.concat(lasts)).pluck('length').max();
   $(window).on('resize', (function resize() {
-    var px = body.width() / (longest + 1) / 5;
+    var px = document.documentElement.clientWidth / (longest + 1) / 5;
     body.css('font-size', px + 'px');
     return resize;
   }()));
-  body.addClass('resized');
 
   // Write some stuff to the page, loop, good times.
   var initted;
