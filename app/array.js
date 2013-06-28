@@ -1,4 +1,4 @@
-define(function(require) {
+define(function() {
 
   // Get a random array item.
   Array.prototype.randomItem = function() {
