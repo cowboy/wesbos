@@ -1,9 +1,9 @@
 require.config({
 
-  // override data-main from script tag during debug mode
+  // override data-main from script tag during dev mode
   baseUrl: '/',
 
-  // automatically require on page load in debug mode
+  // automatically require on page load in dev mode
   deps: ['app/index'],
 
   // automatically require this for production build
@@ -25,5 +25,6 @@ require.config({
     }
   },
 
+  // remove these modules from the final build
   stubModules: ['json', 'text']
 });
