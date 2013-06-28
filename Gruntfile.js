@@ -3,43 +3,37 @@ module.exports = function(grunt) {
   grunt.initConfig({
     jshint: {
       options: {
-        jshintrc: '.jshintrc'
+        jshintrc: '.jshintrc',
       },
-      app: {
-        src: ['app/**/*.js']
-      }
+      app: ['app/**/*.js'],
     },
     jade: {
-      dev: {
-        files: [{expand: true, cwd: 'app/pages', src: '*.jade', dest: 'dist', ext: '.html'}],
-        options: {
-          data: {
-            config: require('./config/config.json'),
-            debug: true
-          }
+      options: {
+        data: {
+          config: require('./config/config.json'),
+          target: '<%= grunt.task.current.target %>',
         },
       },
-      prod: {
-        files: '<%= jade.dev.files %>',
-        options: {
-          data: {
-            config: require('./config/config.json'),
-            debug: false
-          }
-        },
-      }
+      dev: {
+        expand: true,
+        cwd: 'app/pages',
+        src: '*.jade',
+        dest: 'dist',
+        ext: '.html',
+      },
+      prod: '<%= jade.dev %>',
     },
     handlebars: {
+      options: {
+        amd: true,
+        processName: function(name) {
+          return require('path').basename(name, '.hbs');
+        },
+      },
       templates: {
         src: 'app/templates/*.hbs',
         dest: 'temp/templates.js',
-        options: {
-          amd: true,
-          processName: function(name) {
-            return require('path').basename(name, '.hbs');
-          }
-        }
-      }
+      },
     },
     stylus: {
       dev: {
@@ -48,7 +42,7 @@ module.exports = function(grunt) {
       },
       prod: {
         files: '<%= stylus.dev.files %>',
-      }
+      },
     },
     requirejs: {
       prod: {
@@ -58,8 +52,8 @@ module.exports = function(grunt) {
           name: 'components/almond/almond',
           out: 'dist/app.js',
           optimize: 'uglify2',
-        }
-      }
+        },
+      },
     },
     connect: {
       dev: {
@@ -71,8 +65,8 @@ module.exports = function(grunt) {
               // But serve everything else from the root.
               connect.static(__dirname),
             ];
-          }
-        }
+          },
+        },
       },
       prod: {
         options: {
@@ -83,7 +77,7 @@ module.exports = function(grunt) {
     },
     watch: {
       options: {
-        livereload: true
+        livereload: true,
       },
       app: {
         files: ['app/**/*.js'],
@@ -107,8 +101,8 @@ module.exports = function(grunt) {
           base: 'dist',
           clone: 'temp/gh-pages',
         },
-        src: ['**/*']
-      }
+        src: ['**/*'],
+      },
     },
   });
 
@@ -125,6 +119,7 @@ module.exports = function(grunt) {
   grunt.registerTask('build',
     'Build site files for testing or deployment.',
     ['jshint', 'jade:prod', 'handlebars', 'requirejs:prod', 'stylus:prod']);
+
   grunt.registerTask('deploy',
     'Deploy site via gh-pages.',
     ['build', 'gh-pages']);
@@ -132,6 +127,7 @@ module.exports = function(grunt) {
   grunt.registerTask('dev',
     'Start a live-reloading dev webserver on localhost.',
     ['jshint', 'jade:dev', 'handlebars', 'stylus:dev', 'connect:dev', 'watch']);
+
   grunt.registerTask('prod',
     'Publish to dist/ and start a webserver on localhost.',
     ['build', 'connect:prod:keepalive']);

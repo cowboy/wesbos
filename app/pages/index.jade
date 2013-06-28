@@ -7,8 +7,8 @@ html(lang='en')
     //if lt IE 9
       script(src='//html5shiv.googlecode.com/svn/trunk/html5.js')
   body
+    //- Yay for HSL!
     script
-      // Yay for HSL!
       document.body.style.background = "hsl(" + (Math.random() * 360) + ", 90%, 60%)";
     div#content
       div#first
@@ -23,7 +23,7 @@ html(lang='en')
         a(href='http://benalman.com/') "Cowboy" Ben Alman
         =' / '
         a(href='https://github.com/cowboy/wesbos') Source &amp; Backstory
-    if debug === true
+    if target === 'dev'
       script
         document.write('<script src="http://' + (location.hostname || 'localhost') + ':35729/livereload.js?snipver=1"><\/script>');
       script(data-main="../config/requirejs", src="../components/requirejs/require.js")
