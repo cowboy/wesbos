@@ -13,6 +13,17 @@ define(function(require) {
   var firsts = config.suffix.first.concat(config.suffix.all);
   var lasts = config.suffix.last.concat(config.suffix.all);
 
+  // Sadly, a bazillion times easier than media queries.
+  var body = $('body');
+  var prefixmax = Math.max(config.prefix.first.length, config.prefix.last.length);
+  var longest = prefixmax + _(firsts.concat(lasts)).pluck('length').max();
+  $(window).on('resize', (function resize() {
+    var px = body.width() / (longest + 1) / 5;
+    body.css('font-size', px + 'px');
+    return resize;
+  }()));
+  body.addClass('resized');
+
   // Write some stuff to the page, loop, good times.
   var initted;
   var recents = [];
@@ -36,15 +47,5 @@ define(function(require) {
     initted = true;
     setTimeout(loopy, 3000);
   }());
-
-  // Sadly, a bazillion times easier than media queries.
-  var body = $('body');
-  var prefixmax = Math.max(config.prefix.first.length, config.prefix.last.length);
-  var longest = prefixmax + _(firsts.concat(lasts)).pluck('length').max();
-  $(window).on('resize', (function resize() {
-    var px = body.width() / (longest + 1) / 5;
-    body.css('font-size', px + 'px');
-    return resize;
-  }()));
 
 });
