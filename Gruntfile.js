@@ -1,14 +1,4 @@
-
 module.exports = function(grunt) {
-
-  grunt.loadNpmTasks('grunt-contrib-requirejs');
-  grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-contrib-jade');
-  grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.loadNpmTasks('grunt-contrib-stylus');
-  grunt.loadNpmTasks('grunt-contrib-connect');
-  grunt.loadNpmTasks('grunt-contrib-handlebars');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
 
   grunt.initConfig({
     jshint: {
@@ -57,7 +47,6 @@ module.exports = function(grunt) {
         files: [{src: 'app/css/app.styl', dest: 'dist/app.css'}],
       },
       prod: {
-        options: {compress: true},
         files: '<%= stylus.dev.files %>',
       }
     },
@@ -77,7 +66,9 @@ module.exports = function(grunt) {
         options: {
           middleware: function(connect, options) {
             return [
+              // Serve files in /dist as if they were in the root.
               connect.static(__dirname + '/dist'),
+              // But serve everything else from the root.
               connect.static(__dirname),
             ];
           }
@@ -112,6 +103,14 @@ module.exports = function(grunt) {
     },
   });
 
+  grunt.loadNpmTasks('grunt-contrib-requirejs');
+  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-jade');
+  grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-contrib-stylus');
+  grunt.loadNpmTasks('grunt-contrib-connect');
+  grunt.loadNpmTasks('grunt-contrib-handlebars');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
 
   grunt.registerTask('dev', ['jshint', 'jade:dev', 'handlebars', 'stylus:dev', 'connect:dev', 'watch']);
   grunt.registerTask('prod', ['jshint', 'jade:prod', 'handlebars', 'requirejs:prod', 'stylus:prod', 'connect:prod:keepalive']);
