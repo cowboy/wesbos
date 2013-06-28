@@ -1,0 +1,58 @@
+@import url("http://fonts.googleapis.com/css?family=Droid\+Sans\+Mono");
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-weight:inherit;font-style:inherit;font-family:inherit;font-size:100%;vertical-align:baseline}
+body{line-height:1;color:#000;background:#fff}
+ol,ul{list-style:none}
+table{border-collapse:separate;border-spacing:0;vertical-align:middle}
+caption,th,td{text-align:left;font-weight:normal;vertical-align:middle}
+a img{border:none}
+html,body{height:100%;margin:0}
+body{font-family:'Droid Sans Mono',monospace;text-transform:uppercase;background:#777;display:-webkit-box;display:-moz-box;display:-ms-box;display:-webkit-flex;display:box;display:flex;-webkit-box-align:center;-moz-box-align:center;-o-box-align:center;-ms-box-align:center;-webkit-align-items:center;align-items:center}
+#content{display:none;font-size:1em;padding:1em;padding-right:0}
+body.init #content{display:block}
+*{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}
+.prefix,.suffix{display:inline-block;margin:0}
+.letter{font-size:5em;display:inline-block;width:.9em;height:1.4em;line-height:1.25em;position:relative;margin:0 .05em 0 0;text-align:center;-webkit-perspective:800px;-moz-perspective:800px;-ms-perspective:800px;perspective:800px;}
+.letter .flipper,.letter .flipper > *{position:absolute;width:100%;height:100%}
+.letter .flipper{-webkit-transition:-webkit-transform 1s;-moz-transition:-moz-transform 1s;-o-transition:-o-transform 1s;-ms-transition:-ms-transform 1s;transition:transform 1s;-webkit-transform-style:preserve-3d;-moz-transform-style:preserve-3d;-o-transform-style:preserve-3d;-ms-transform-style:preserve-3d;transform-style:preserve-3d;}
+.letter .flipper > *{-webkit-backface-visibility:hidden;-moz-backface-visibility:hidden;-ms-backface-visibility:hidden;backface-visibility:hidden;border:.05em solid #000;background-color:rgba(255,255,255,0.1);border-color:rgba(0,0,0,0.15);font-weight:400;}
+.prefix .letter .flipper > *{background-color:rgba(0,0,0,0.2);border-color:rgba(0,0,0,0.15);font-weight:700}
+.letter .flipper .back{-webkit-transform:rotateX(180deg);-moz-transform:rotateX(180deg);-o-transform:rotateX(180deg);-ms-transform:rotateX(180deg);transform:rotateX(180deg)}
+.letter .flipper .empty{background:none !important;border:none !important}
+.flipped .flipper{-webkit-transform:rotateX(180deg);-moz-transform:rotateX(180deg);-o-transform:rotateX(180deg);-ms-transform:rotateX(180deg);transform:rotateX(180deg);}
+.flipped .flipper .front:not(.empty){-webkit-animation:flip-front 1s;-moz-animation:flip-front 1s;-o-animation:flip-front 1s;-ms-animation:flip-front 1s;animation:flip-front 1s}
+.flipped .flipper .back:not(.empty){-webkit-animation:flip-back 1s;-moz-animation:flip-back 1s;-o-animation:flip-back 1s;-ms-animation:flip-back 1s;animation:flip-back 1s}
+.prefix .flipped .flipper .back:not(.empty){-webkit-animation:flip-back-prefix 1s;-moz-animation:flip-back-prefix 1s;-o-animation:flip-back-prefix 1s;-ms-animation:flip-back-prefix 1s;animation:flip-back-prefix 1s}
+#footer{font-size:.8em;margin-top:2em;}
+#footer a{color:#000;text-decoration:none;}
+#footer a:hover{text-decoration:underline}
+@-moz-keyframes flip-front{0%{background-color:rgba(255,255,255,0.1)}
+50%{background-color:rgba(255,255,255,0.5)}
+}@-webkit-keyframes flip-front{0%{background-color:rgba(255,255,255,0.1)}
+50%{background-color:rgba(255,255,255,0.5)}
+}@-o-keyframes flip-front{0%{background-color:rgba(255,255,255,0.1)}
+50%{background-color:rgba(255,255,255,0.5)}
+}@-ms-keyframes flip-front{0%{background-color:rgba(255,255,255,0.1)}
+50%{background-color:rgba(255,255,255,0.5)}
+}@keyframes flip-front{0%{background-color:rgba(255,255,255,0.1)}
+50%{background-color:rgba(255,255,255,0.5)}
+}@-moz-keyframes flip-back{50%{background-color:rgba(255,255,255,0.5)}
+100%{background-color:rgba(255,255,255,0.1)}
+}@-webkit-keyframes flip-back{50%{background-color:rgba(255,255,255,0.5)}
+100%{background-color:rgba(255,255,255,0.1)}
+}@-o-keyframes flip-back{50%{background-color:rgba(255,255,255,0.5)}
+100%{background-color:rgba(255,255,255,0.1)}
+}@-ms-keyframes flip-back{50%{background-color:rgba(255,255,255,0.5)}
+100%{background-color:rgba(255,255,255,0.1)}
+}@keyframes flip-back{50%{background-color:rgba(255,255,255,0.5)}
+100%{background-color:rgba(255,255,255,0.1)}
+}@-moz-keyframes flip-back-prefix{50%{background-color:rgba(255,255,255,0.5)}
+100%{background-color:rgba(0,0,0,0.2)}
+}@-webkit-keyframes flip-back-prefix{50%{background-color:rgba(255,255,255,0.5)}
+100%{background-color:rgba(0,0,0,0.2)}
+}@-o-keyframes flip-back-prefix{50%{background-color:rgba(255,255,255,0.5)}
+100%{background-color:rgba(0,0,0,0.2)}
+}@-ms-keyframes flip-back-prefix{50%{background-color:rgba(255,255,255,0.5)}
+100%{background-color:rgba(0,0,0,0.2)}
+}@keyframes flip-back-prefix{50%{background-color:rgba(255,255,255,0.5)}
+100%{background-color:rgba(0,0,0,0.2)}
+}
