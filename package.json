@@ -16,6 +16,9 @@
   "engines": {
     "node": ">= 0.8.0"
   },
+  "scripts": {
+    "install": "bower install"
+  },
   "dependencies": {},
   "devDependencies": {
     "grunt": "~0.4.1",
