@@ -10,5 +10,9 @@
   "unused": "vars",
   "boss": true,
   "eqnull": true,
-  "node": true
+  "browser": true,
+  "globals": {
+    "define": false,
+    "require": false
+  }
 }

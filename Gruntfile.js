@@ -2,10 +2,14 @@ module.exports = function(grunt) {
 
   grunt.initConfig({
     jshint: {
-      options: {
-        jshintrc: '.jshintrc',
+      gruntfile: {
+        options: {jshintrc: '.jshintrc'},
+        src: ['Gruntfile.js'],
       },
-      app: ['app/**/*.js'],
+      app: {
+        options: {jshintrc: 'app/.jshintrc'},
+        src: ['app/**/*.js'],
+      },
     },
     jade: {
       options: {
