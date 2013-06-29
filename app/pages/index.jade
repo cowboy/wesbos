@@ -26,6 +26,6 @@ html(lang='en')
     if target === 'dev'
       script
         document.write('<script src="http://' + (location.hostname || 'localhost') + ':35729/livereload.js?snipver=1"><\/script>');
-      script(data-main="../config/requirejs", src="../components/requirejs/require.js")
+      script(data-main="config/requirejs", src="components/requirejs/require.js")
     else
       script(src="app.js")
