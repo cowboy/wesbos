@@ -8,7 +8,7 @@ module.exports = function(grunt) {
       },
       app: {
         options: {jshintrc: 'app/.jshintrc'},
-        src: ['app/**/*.js'],
+        src: ['{app,config}/**/*.{js,json}'],
       },
     },
     jade: {
@@ -88,8 +88,9 @@ module.exports = function(grunt) {
       options: {
         livereload: true,
       },
-      app: {
-        files: ['app/**/*.js'],
+      jshint: {
+        files: ['<%= jshint.app.src %>'],
+        tasks: ['jshint:app']
       },
       jade: {
         files: ['app/pages/*.jade', 'config/config.json'],
@@ -101,7 +102,7 @@ module.exports = function(grunt) {
       },
       stylus: {
         files: ['<%= stylus.dev.files[0].src %>'],
-        tasks: ['stylus'],
+        tasks: ['stylus:dev'],
       },
     },
     'gh-pages': {
