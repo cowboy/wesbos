@@ -1,6 +1,6 @@
 define(function(require) {
   var $ = require('jquery');
-  var templates = require('temp/templates');
+  var templates = require('build/templates');
 
   // Render a letter, animating from before -> after offset * 100ms.
   $.fn.addLetter = function(before, after, offset) {
