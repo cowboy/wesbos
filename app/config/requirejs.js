@@ -13,6 +13,8 @@ require.config({
   paths: {
     text: 'components/requirejs-plugins/lib/text',
     json: 'components/requirejs-plugins/src/json',
+    'amd-loader': 'components/amd-loader/amd-loader',
+    cjs: 'components/cjs/cjs',
     handlebars: 'components/handlebars/handlebars',
     lodash: 'components/lodash/lodash',
     jquery: 'components/jquery/jquery'
@@ -26,5 +28,5 @@ require.config({
   },
 
   // remove these modules from the final build
-  stubModules: ['json', 'text']
+  stubModules: ['json', 'text', 'cjs']
 });

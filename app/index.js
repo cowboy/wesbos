@@ -7,16 +7,14 @@ define(function(require) {
   require('./array');
   require('./letter');
 
-  var config = require('json!config/config.json');
-
-  // WES___ BOS___ name suffixes.
-  var firsts = config.suffix.first.concat(config.suffix.all);
-  var lasts = config.suffix.last.concat(config.suffix.all);
+  var config = require('cjs!config/app');
+  var prefix = config.prefix;
+  var suffix = config.suffix;
 
   // Sadly, a bazillion times easier than media queries.
   var body = $('body').addClass('init');
-  var prefixmax = Math.max(config.prefix.first.length, config.prefix.last.length);
-  var longest = prefixmax + _(firsts.concat(lasts)).pluck('length').max();
+  var prefixmax = Math.max(prefix.first.length, prefix.last.length);
+  var longest = prefixmax + _(suffix.firsts.concat(suffix.lasts)).pluck('length').max();
   $(window).on('resize', (function resize() {
     var px = document.documentElement.clientWidth / (longest + 1) / 5;
     body.css('font-size', px + 'px');
@@ -29,19 +27,19 @@ define(function(require) {
   (function loopy() {
     // Only draw WES BOS the first time.
     if (!initted) {
-      $('#first .prefix').addWord(config.prefix.first);
-      $('#last .prefix').addWord(config.prefix.last);
+      $('#first .prefix').addWord(prefix.first);
+      $('#last .prefix').addWord(prefix.last);
     }
 
     // Pick random suffixes that haven't been used too recently.
-    var first = firsts.randomItemButNot(recents);
+    var first = suffix.firsts.randomItemButNot(recents);
     recents.unshift(first);
-    var last = lasts.randomItemButNot(recents);
+    var last = suffix.lasts.randomItemButNot(recents);
     recents.unshift(last);
     recents = recents.slice(0, 6);
 
-    $('#first .suffix').empty().addWord(first, initted ? 0 : config.prefix.first.length);
-    $('#last .suffix').empty().addWord(last, initted ? 0 : config.prefix.last.length);
+    $('#first .suffix').empty().addWord(first, initted ? 0 : prefix.first.length);
+    $('#last .suffix').empty().addWord(last, initted ? 0 : prefix.last.length);
 
     initted = true;
     setTimeout(loopy, 3000);

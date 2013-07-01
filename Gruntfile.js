@@ -2,19 +2,19 @@ module.exports = function(grunt) {
 
   grunt.initConfig({
     jshint: {
-      gruntfile: {
+      config: {
         options: {jshintrc: '.jshintrc'},
-        src: ['Gruntfile.js'],
+        src: ['Gruntfile.js', 'config/**/*.js'],
       },
       app: {
         options: {jshintrc: 'app/.jshintrc'},
-        src: ['{app,config}/**/*.{js,json}'],
+        src: ['app/**/*.js'],
       },
     },
     jade: {
       options: {
         data: {
-          config: require('./config/config.json'),
+          config: require('./config/app'),
           target: '<%= grunt.task.current.target %>',
         },
       },
@@ -52,7 +52,7 @@ module.exports = function(grunt) {
       prod: {
         options: {
           baseUrl: '.',
-          mainConfigFile: 'config/requirejs.js',
+          mainConfigFile: 'app/config/requirejs.js',
           name: 'components/almond/almond',
           out: 'build/wwwroot/app.js',
           optimize: 'uglify2',
@@ -89,8 +89,8 @@ module.exports = function(grunt) {
         livereload: true,
       },
       jshint: {
-        files: ['<%= jshint.app.src %>'],
-        tasks: ['jshint:app']
+        files: ['<%= jshint.config.src %>', '<%= jshint.app.src %>'],
+        tasks: ['jshint']
       },
       jade: {
         files: ['app/pages/*.jade', 'config/config.json'],

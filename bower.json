@@ -5,6 +5,7 @@
     "almond": "~0.2.5",
     "jquery": "~2.0.2",
     "lodash": "~1.2.1",
-    "handlebars": "~1.0.0"
+    "handlebars": "~1.0.0",
+    "cjs": "latest"
   }
 }
