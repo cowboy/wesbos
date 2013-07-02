@@ -93,7 +93,7 @@ module.exports = function(grunt) {
         tasks: ['jshint']
       },
       jade: {
-        files: ['app/pages/*.jade', 'config/config.json'],
+        files: ['app/pages/*.jade', 'config/**/*'],
         tasks: ['jade:dev'],
       },
       handlebars: {
