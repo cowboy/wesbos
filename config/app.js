@@ -1,7 +1,8 @@
 var config = module.exports = {};
 
-// Page title.
+// Page metadata.
 config.title = "WES BOS";
+config.url = "http://wesbos.com/";
 
 // Name prefixes.
 config.prefix = {
