@@ -109,7 +109,7 @@ module.exports = function(grunt) {
       site: {
         options: {
           base: 'build/wwwroot',
-          clone: 'temp/gh-pages',
+          clone: 'build/gh-pages',
         },
         src: ['**/*'],
       },
