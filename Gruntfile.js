@@ -56,8 +56,8 @@ module.exports = function(grunt) {
         options: {
           baseUrl: '.',
           mainConfigFile: 'app/config/requirejs.js',
-          deps: ['app/index'],
-          insertRequire: ['app/index'],
+          deps: ['app/app'],
+          insertRequire: ['app/app'],
           name: 'components/almond/almond',
           out: 'build/wwwroot/app.js',
           optimize: 'uglify2',

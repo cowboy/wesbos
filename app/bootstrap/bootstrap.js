@@ -1,4 +1,4 @@
 require(['../config/requirejs'], function() {
-  require(['app/index']);
+  require(['app/app']);
   require(['livereload']);
 });
