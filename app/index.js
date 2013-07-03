@@ -4,8 +4,8 @@ define(function(require) {
   var _ = require('lodash');
 
   // Mixins.
-  require('./array');
-  require('./letter');
+  require('app/array');
+  require('app/letter');
 
   var config = require('cjs!config/app');
   var prefix = config.prefix;
