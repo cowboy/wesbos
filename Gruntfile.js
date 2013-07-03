@@ -11,6 +11,9 @@ module.exports = function(grunt) {
         src: ['app/**/*.js'],
       },
     },
+    clean: {
+      build: ['build'],
+    },
     jade: {
       options: {
         data: {
@@ -140,11 +143,12 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-handlebars');
   grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-gh-pages');
 
   grunt.registerTask('build',
     'Build site files for testing or deployment.',
-    ['jshint', 'jade:prod', 'handlebars', 'requirejs:prod', 'fix_sourcemaps', 'stylus:prod']);
+    ['jshint', 'clean', 'jade:prod', 'handlebars', 'requirejs:prod', 'fix_sourcemaps', 'stylus:prod']);
 
   grunt.registerTask('deploy',
     'Deploy site via gh-pages.',
@@ -152,7 +156,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('dev',
     'Start a live-reloading dev webserver on localhost.',
-    ['jshint', 'jade:dev', 'handlebars', 'stylus:dev', 'connect:dev', 'watch']);
+    ['jshint', 'clean', 'jade:dev', 'handlebars', 'stylus:dev', 'connect:dev', 'watch']);
 
   grunt.registerTask('prod',
     'Publish to build/wwwroot and start a webserver on localhost.',
