@@ -72,24 +72,12 @@ module.exports = function(grunt) {
     connect: {
       dev: {
         options: {
-          redirects: {
-            '/app.js': '/components/requirejs/require.js',
-          },
           middleware: function(connect, options) {
             return [
               // Look for files in build/wwwroot.
               connect.static(__dirname + '/build/wwwroot'),
               // Then in the project root.
               connect.static(__dirname),
-              // Then in the redirects map.
-              function(req, res, next) {
-                if (req.url in options.redirects) {
-                  res.writeHead(302, {'Location': options.redirects[req.url]});
-                  res.end();
-                } else {
-                  next();
-                }
-              },
             ];
           },
         },
