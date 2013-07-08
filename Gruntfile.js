@@ -132,9 +132,15 @@ module.exports = function(grunt) {
       // other than to rewrite ../ and ../../ (and ../ times 8 for !json??)
       var table = [];
       data.sources = data.sources.map(function(filepath) {
+        // Fix path parts.
         var adjusted = filepath.replace(/^(\.\.\/)+/, function(parents) {
           var depth = parents.match(/\.\.\//g).length - 1;
           return ['build/', ''][depth] || '';
+        });
+        // Move plugin name from path-prefix to filename-prefix.
+        adjusted = adjusted.replace(/(.+)!(.*)/, function(_, plugin, path) {
+          var parts = path.split('/');
+          return parts.concat(plugin + '__' + parts.pop()).join('/');
         });
         table.push([filepath, '→', adjusted]);
         return adjusted;
