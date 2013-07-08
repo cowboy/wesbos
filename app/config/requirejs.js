@@ -26,5 +26,5 @@ require.config({
   },
 
   // Remove these modules from the final build.
-  stubModules: ['json', 'text', 'cjs']
+  stubModules: ['text', 'cjs']
 });
