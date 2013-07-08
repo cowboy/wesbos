@@ -7,6 +7,7 @@ require.config({
   paths: {
     text: 'components/requirejs-plugins/lib/text',
     json: 'components/requirejs-plugins/src/json',
+    hb: 'components/requirejs-handlebars/hb',
     'amd-loader': 'components/amd-loader/amd-loader',
     cjs: 'components/cjs/cjs',
     handlebars: 'components/handlebars/handlebars',
