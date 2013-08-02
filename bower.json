@@ -1,4 +1,5 @@
 {
+  "name": "bower/bower#706",
   "devDependencies": {
     "requirejs": "~2.1.6",
     "requirejs-plugins": "~1.0.2",
