@@ -38,18 +38,6 @@ module.exports = function(grunt) {
       },
       prod: '<%= jade.dev %>',
     },
-    handlebars: {
-      options: {
-        amd: true,
-        processName: function(name) {
-          return require('path').basename(name, '.hbs');
-        },
-      },
-      templates: {
-        src: 'app/templates/*.hbs',
-        dest: 'build/templates.js',
-      },
-    },
     stylus: {
       dev: {
         options: {compress: false},
@@ -89,8 +77,12 @@ module.exports = function(grunt) {
       },
     },
     watch: {
-      options: {
-        livereload: true,
+      livereload: {
+        options: {
+          livereload: true,
+        },
+        files: ['app/**/*.{js,hbs}', 'build/wwwroot/*'],
+        tasks: [],
       },
       jshint: {
         files: ['<%= jshint.config.src %>', '<%= jshint.app.src %>'],
@@ -99,10 +91,6 @@ module.exports = function(grunt) {
       jade: {
         files: ['app/pages/*.jade', 'config/**/*'],
         tasks: ['jade:dev'],
-      },
-      handlebars: {
-        files: ['<%= handlebars.templates.src %>'],
-        tasks: ['handlebars'],
       },
       stylus: {
         files: ['<%= stylus.dev.files[0].src %>'],
@@ -158,7 +146,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-requirejs');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-jade');
-  grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-stylus');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-jshint');
