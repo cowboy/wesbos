@@ -14,6 +14,14 @@ module.exports = function(grunt) {
     clean: {
       build: ['build'],
     },
+    symlink: {
+      dev: {
+        src: ['*', '!build'],
+        dest: 'build/wwwroot',
+        expand: true,
+        filter: 'isDirectory',
+      }
+    },
     jade: {
       options: {
         data: {
@@ -70,21 +78,12 @@ module.exports = function(grunt) {
       prod: ['build/wwwroot/app.js.map']
     },
     connect: {
-      dev: {
-        options: {
-          middleware: function(connect, options) {
-            return [
-              // Look for files in build/wwwroot.
-              connect.static(__dirname + '/build/wwwroot'),
-              // Then in the project root.
-              connect.static(__dirname),
-            ];
-          },
-        },
+      options: {
+        base: 'build/wwwroot',
       },
+      dev: {},
       prod: {
         options: {
-          base: 'build/wwwroot',
           keepalive: true,
         },
       },
@@ -164,6 +163,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-contrib-symlink');
   grunt.loadNpmTasks('grunt-gh-pages');
 
   grunt.registerTask('build',
@@ -176,7 +176,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('dev',
     'Start a live-reloading dev webserver on localhost.',
-    ['jshint', 'clean', 'jade:dev', 'stylus:dev', 'connect:dev', 'watch']);
+    ['jshint', 'clean', 'symlink:dev', 'jade:dev', 'stylus:dev', 'connect:dev', 'watch']);
 
   grunt.registerTask('prod',
     'Publish to build/wwwroot and start a webserver on localhost.',
