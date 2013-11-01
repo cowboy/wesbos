@@ -1,6 +1,6 @@
 define(function(require) {
   var $ = require('jquery');
-  var letterTmpl = require('hb!app/templates/letter.hbs');
+  var letterTmpl = require('tmpl!app/templates/letter');
 
   // Render a letter, animating from before -> after offset * 100ms.
   $.fn.addLetter = function(before, after, offset) {

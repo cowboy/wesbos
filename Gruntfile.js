@@ -78,7 +78,7 @@ module.exports = function(grunt) {
         options: {
           livereload: true,
         },
-        files: ['app/**/*.{js,hbs}', 'build/wwwroot/*'],
+        files: ['app/**/*.js', 'app/templates/*.html', 'build/wwwroot/*'],
         tasks: [],
       },
       jshint: {

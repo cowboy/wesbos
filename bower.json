@@ -6,8 +6,8 @@
     "requirejs-handlebars": "~0.0.1",
     "almond": "~0.2.5",
     "jquery": "~2.0.2",
-    "lodash": "~1.2.1",
-    "handlebars": "~1.0.0",
+    "lodash": "~2.2.1",
+    "lodash-template-loader": "~0.1.2",
     "cjs": "latest"
   }
 }
