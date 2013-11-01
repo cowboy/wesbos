@@ -14,7 +14,7 @@ You'll need to have [Grunt](http://gruntjs.com/) and [Bower](http://bower.io/) i
 
 1. Clone this project's repo.
 1. Ensure the `master` branch is checked out.
-1. Run `npm install` to install Grunt, Grunt plugins, components, etc.
+1. Run `npm install` to install Grunt, Grunt plugins, Bower components, etc.
 1. Run `grunt` to start a live-reloading dev webserver on [localhost:8000](http://localhost:8000/).
 
 When done:
