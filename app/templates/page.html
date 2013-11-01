@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>${config.title}</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link href="app.css" rel="stylesheet" type="text/css" media="all">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  </head>
+  <body>
+    <script>
+    // Yay for HSL!
+    document.body.style.background = 'hsl(' + (Math.random() * 360) + ', 90%, 60%)';
+    </script>
+    <div id="content">
+      <div id="first">
+        <div class="prefix"></div>
+        <div class="suffix"></div>
+      </div>
+      <div id="last">
+        <div class="prefix"></div>
+        <div class="suffix"></div>
+      </div>
+      <div id="footer">
+        <a href="${config.url}">${config.title}</a>
+        by <a href="http://benalman.com/">"Cowboy" Ben Alman</a>
+        / <a href="https://github.com/cowboy/wesbos">Source &amp; Backstory</a>
+      </div>
+    </div>
+    <% if (target === 'dev') { %>
+      <script data-main="app/bootstrap" src="bower_components/requirejs/require.js"></script>
+    <% } else { %>
+      <script src="app.js"></script>
+    <% } %>
+  </body>
+</html>

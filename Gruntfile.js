@@ -22,7 +22,7 @@ module.exports = function(grunt) {
         filter: 'isDirectory',
       }
     },
-    jade: {
+    tmpl: {
       options: {
         data: {
           config: require('./config/app'),
@@ -30,13 +30,10 @@ module.exports = function(grunt) {
         },
       },
       dev: {
-        expand: true,
-        cwd: 'app/pages',
-        src: '*.jade',
-        dest: 'build/wwwroot',
-        ext: '.html',
+        src: 'app/templates/page.html',
+        dest: 'build/wwwroot/index.html',
       },
-      prod: '<%= jade.dev %>',
+      prod: '<%= tmpl.dev %>',
     },
     stylus: {
       dev: {
@@ -85,9 +82,9 @@ module.exports = function(grunt) {
         files: ['<%= jshint.config.src %>', '<%= jshint.app.src %>'],
         tasks: ['jshint']
       },
-      jade: {
-        files: ['app/pages/*.jade', 'config/**/*'],
-        tasks: ['jade:dev'],
+      tmpl: {
+        files: ['<%= tmpl.dev.src %>', 'config/**/*'],
+        tasks: ['tmpl:dev'],
       },
       stylus: {
         files: ['<%= stylus.dev.files[0].src %>'],
@@ -107,7 +104,6 @@ module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-contrib-requirejs');
   grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-contrib-jade');
   grunt.loadNpmTasks('grunt-contrib-stylus');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-jshint');
@@ -117,7 +113,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('build',
     'Build site files for testing or deployment.',
-    ['jshint', 'clean', 'jade:prod', 'requirejs:prod', 'stylus:prod']);
+    ['jshint', 'clean', 'tmpl:prod', 'requirejs:prod', 'stylus:prod']);
 
   grunt.registerTask('deploy',
     'Deploy site via gh-pages.',
@@ -125,7 +121,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('dev',
     'Start a live-reloading dev webserver on localhost.',
-    ['jshint', 'clean', 'symlink:dev', 'jade:dev', 'stylus:dev', 'connect:dev', 'watch']);
+    ['jshint', 'clean', 'symlink:dev', 'tmpl:dev', 'stylus:dev', 'connect:dev', 'watch']);
 
   grunt.registerTask('prod',
     'Publish to build/wwwroot and start a webserver on localhost.',
@@ -133,4 +129,21 @@ module.exports = function(grunt) {
 
   grunt.registerTask('default', ['dev']);
 
+  grunt.registerMultiTask('tmpl', 'compile lodash templates to html files', function() {
+    var _ = require('lodash');
+    var options = this.options({
+      data: {},
+      templateSettings: null,
+    });
+    var origTemplateSettings = _.templateSettings;
+    this.files.forEach(function(f) {
+      var src = grunt.file.read(f.src[0]);
+      if (options.templateSettings) {
+        _.templateSettings = _.extend(_.templateSettings, options.templateSettings);
+      }
+      var html = _.template(src, options.data);
+      grunt.file.write(f.dest, html);
+      _.templateSettings = origTemplateSettings;
+    });
+  });
 };

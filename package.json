@@ -30,6 +30,7 @@
     "grunt-contrib-jshint": "~0.6.0",
     "grunt-contrib-clean": "~0.4.1",
     "grunt-contrib-symlink": "~0.2.0",
-    "grunt-gh-pages": "~0.6.0"
+    "grunt-gh-pages": "~0.6.0",
+    "lodash": "~2.2.1"
   }
 }
