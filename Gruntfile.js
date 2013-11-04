@@ -31,9 +31,19 @@ module.exports = function(grunt) {
       },
       dev: {
         src: 'app/templates/page.html',
-        dest: 'build/wwwroot/index.html',
+        dest: 'build/index.tmp.html',
       },
       prod: '<%= tmpl.dev %>',
+    },
+    htmlmin: {
+      options: {
+        collapseWhitespace: true,
+        removeComments: true,
+      },
+      all: {
+        src: '<%= tmpl.dev.dest %>',
+        dest: 'build/wwwroot/index.html',
+      },
     },
     stylus: {
       dev: {
@@ -84,7 +94,7 @@ module.exports = function(grunt) {
       },
       tmpl: {
         files: ['<%= tmpl.dev.src %>', 'config/**/*'],
-        tasks: ['tmpl:dev'],
+        tasks: ['tmpl:dev', 'htmlmin'],
       },
       stylus: {
         files: ['<%= stylus.dev.files[0].src %>'],
@@ -109,11 +119,12 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-symlink');
+  grunt.loadNpmTasks('grunt-contrib-htmlmin');
   grunt.loadNpmTasks('grunt-gh-pages');
 
   grunt.registerTask('build',
     'Build site files for testing or deployment.',
-    ['jshint', 'clean', 'tmpl:prod', 'requirejs:prod', 'stylus:prod']);
+    ['jshint', 'clean', 'tmpl:prod', 'htmlmin', 'requirejs:prod', 'stylus:prod']);
 
   grunt.registerTask('deploy',
     'Deploy site via gh-pages.',
@@ -121,7 +132,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('dev',
     'Start a live-reloading dev webserver on localhost.',
-    ['jshint', 'clean', 'symlink:dev', 'tmpl:dev', 'stylus:dev', 'connect:dev', 'watch']);
+    ['jshint', 'clean', 'symlink:dev', 'tmpl:dev', 'htmlmin', 'stylus:dev', 'connect:dev', 'watch']);
 
   grunt.registerTask('prod',
     'Publish to build/wwwroot and start a webserver on localhost.',
