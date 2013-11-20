@@ -71,6 +71,7 @@ module.exports = function(grunt) {
     },
     connect: {
       options: {
+        hostname: '*',
         base: 'build/wwwroot',
       },
       dev: {},
